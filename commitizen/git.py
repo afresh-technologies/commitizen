@@ -248,9 +248,9 @@ def _get_log_as_str_list(start: Optional[str], end: str, args: str) -> List[str]
         f"git -c log.showSignature=False log --pretty={log_format}{delimiter} {args}"
     )
     if start:
-        command = f"{git_log_cmd} {start}..{end}"
+        command = f"{git_log_cmd} {start}..{end} ."
     else:
-        command = f"{git_log_cmd} {end}"
+        command = f"{git_log_cmd} {end} ."
     c = cmd.run(command)
     if c.return_code != 0:
         raise GitCommandError(c.err)
