@@ -1,4 +1,16 @@
 
+## v3.2.0+afresh (2023-09-18)
+
+### Feat
+
+- perform git log only in current directory
+- Introduce tag_regex option with smart default
+
+### Refactor
+
+- Move bump.normalize_tag to tags.tag_from_version
+- Make tag_format properly default to $version
+
 ## v3.2.0 (2023-05-01)
 
 ### Feat
