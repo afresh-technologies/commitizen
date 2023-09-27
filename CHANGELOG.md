@@ -1,4 +1,10 @@
 
+## v3.3.0+afresh (2023-09-27)
+
+### Feat
+
+- add changelog_ignore_body customization
+
 ## v3.2.1+afresh (2023-09-27)
 
 ### Fix
