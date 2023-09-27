@@ -57,6 +57,10 @@ class CustomizeCommitsCz(BaseCommitizen):
         if change_type_map:
             self.change_type_map = change_type_map
 
+        changelog_ignore_body = self.custom_settings.get("changelog_ignore_body")
+        if changelog_ignore_body:
+            self.changelog_ignore_body = changelog_ignore_body
+
     def questions(self) -> Questions:
         return self.custom_settings.get("questions", [{}])
 

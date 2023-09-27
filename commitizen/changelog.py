@@ -86,6 +86,7 @@ def generate_tree_from_commits(
     change_type_map: Optional[Dict[str, str]] = None,
     changelog_message_builder_hook: Optional[Callable] = None,
     merge_prerelease: bool = False,
+    changelog_ignore_body: bool = False,
 ) -> Iterable[Dict]:
     pat = re.compile(changelog_pattern)
     map_pat = re.compile(commit_parser, re.MULTILINE)
@@ -143,6 +144,8 @@ def generate_tree_from_commits(
             changes[change_type].append(parsed_message)
 
         # Process body from commit message
+        if changelog_ignore_body:
+            continue
         body_parts = commit.body.split("\n\n")
         for body_part in body_parts:
             message_body = body_map_pat.match(body_part)

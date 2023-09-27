@@ -32,6 +32,7 @@ class BaseCommitizen(metaclass=ABCMeta):
     changelog_pattern: Optional[str] = r".*"
     change_type_map: Optional[Dict[str, str]] = None
     change_type_order: Optional[List[str]] = None
+    changelog_ignore_body: bool = False
 
     # Executed per message parsed by the commitizen
     changelog_message_builder_hook: Optional[

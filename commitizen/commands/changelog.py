@@ -134,6 +134,7 @@ class Changelog:
             Callable
         ] = self.cz.changelog_message_builder_hook
         merge_prerelease = self.merge_prerelease
+        changelog_ignore_body = self.cz.changelog_ignore_body
 
         if not changelog_pattern or not commit_parser:
             raise NoPatternMapError(
@@ -187,6 +188,7 @@ class Changelog:
             change_type_map=change_type_map,
             changelog_message_builder_hook=changelog_message_builder_hook,
             merge_prerelease=merge_prerelease,
+            changelog_ignore_body=changelog_ignore_body,
         )
         if self.change_type_order:
             tree = changelog.order_changelog_tree(tree, self.change_type_order)
