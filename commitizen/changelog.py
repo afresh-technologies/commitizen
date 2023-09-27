@@ -133,6 +133,8 @@ def generate_tree_from_commits(
             parsed_message: Dict = message.groupdict()
             # change_type becomes optional by providing None
             change_type = parsed_message.pop("change_type", None)
+            if change_type is None:
+                change_type = ""
 
             if change_type_map:
                 change_type = change_type_map.get(change_type, change_type)
@@ -149,6 +151,8 @@ def generate_tree_from_commits(
             parsed_message_body: Dict = message_body.groupdict()
 
             change_type = parsed_message_body.pop("change_type", None)
+            if change_type is None:
+                change_type = ""
             if change_type_map:
                 change_type = change_type_map.get(change_type, change_type)
             changes[change_type].append(parsed_message_body)
