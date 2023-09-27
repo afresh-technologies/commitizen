@@ -1,4 +1,10 @@
 
+## v3.2.1+afresh (2023-09-27)
+
+### Fix
+
+- no change_type fails when change_type_map provided
+
 ## v3.2.0+afresh (2023-09-18)
 
 ### Feat
