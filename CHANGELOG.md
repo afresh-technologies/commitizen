@@ -1,4 +1,10 @@
 
+## v3.3.1+afresh (2023-10-05)
+
+### Fix
+
+- **ScmProvider**: pass tag_format to get_tags
+
 ## v3.3.0+afresh (2023-09-27)
 
 ### Feat
