@@ -184,12 +184,19 @@ class ScmProvider(VersionProvider):
         "$devrelease": r"(?P<devrelease>\.dev\d+)?",
     }
 
+    def _tag_format_regex(self) -> re.Pattern:
+        pattern = self.config.settings.get("tag_format") or VERSION_PATTERN
+        for var, tag_pattern in self.TAG_FORMAT_REGEXS.items():
+            pattern = pattern.replace(var, tag_pattern)
+
+        return re.compile(f"^{pattern}$", re.VERBOSE)
+
     def _tag_format_matcher(self) -> Callable[[str], Optional[str]]:
         pattern = self.config.settings.get("tag_format") or VERSION_PATTERN
         for var, tag_pattern in self.TAG_FORMAT_REGEXS.items():
             pattern = pattern.replace(var, tag_pattern)
 
-        regex = re.compile(f"^{pattern}$", re.VERBOSE)
+        regex = self._tag_format_regex()
 
         def matcher(tag: str) -> Optional[str]:
             match = regex.match(tag)
@@ -216,8 +223,9 @@ class ScmProvider(VersionProvider):
 
     def get_version(self) -> str:
         matcher = self._tag_format_matcher()
+        pattern = self._tag_format_regex()
         return next(
-            (cast(str, matcher(t.name)) for t in get_tags() if matcher(t.name)), "0.0.0"
+            (cast(str, matcher(t.name)) for t in get_tags(pattern=pattern) if matcher(t.name)), "0.0.0"
         )
 
     def set_version(self, version: str):
